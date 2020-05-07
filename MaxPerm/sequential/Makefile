@@ -29,3 +29,11 @@ test:
 p2p-Gnutella31: MaxPerm
 	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 	./MaxPerm < p2p-Gnutella31.txt
+
+twitter:
+	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+	./MaxPerm < twitter.txt
+
+amazon:
+	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+	./MaxPerm < amazon.txt

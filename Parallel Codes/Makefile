@@ -14,6 +14,8 @@ include $(HCLIB_ROOT)/../modules/system/inc/hclib_system.post.mak
 4: P_Main.cpp version4.cpp
 	g++ -std=c++14 P_Main.cpp version4.cpp -I/usr/local/include/igraph  -L/usr/local/lib -ligraph -lm $(HCLIB_CFLAGS) $(HCLIB_LDFLAGS) -o parallelExec $(HCLIB_LDLIBS)
 
+5: P_Main.cpp version5.cpp
+	g++ -std=c++14 P_Main.cpp version5.cpp -I/usr/local/include/igraph  -L/usr/local/lib -ligraph -lm $(HCLIB_CFLAGS) $(HCLIB_LDFLAGS) -o parallelExec $(HCLIB_LDLIBS)
 
 test: test.cpp
 	g++ -std=c++14 $(HCLIB_CFLAGS) $(HCLIB_LDFLAGS) test.cpp -o test $(HCLIB_LDLIBS)
@@ -21,11 +23,11 @@ test: test.cpp
 
 network: parallelExec
 	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
-	./parallelExec < network10000.dat
+	HCLIB_BIND_THREADS=1 HCLIB_STATS=1 HCLIB_WORKERS=6 ./parallelExec < network10000.dat
 
 facebook: parallelExec
 	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
-	./parallelExec < facebook_combined.txt
+	HCLIB_BIND_THREADS=1 HCLIB_STATS=1 HCLIB_WORKERS=6 ./parallelExec < facebook_combined.txt
 
 wiki: parallelExec
 	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
